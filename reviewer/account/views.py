@@ -1,6 +1,7 @@
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.translation import ungettext_lazy as _
 
 from account.forms import CustomUserAuthenticationForm, UserUpdateForm
 

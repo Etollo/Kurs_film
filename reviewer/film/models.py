@@ -4,7 +4,7 @@ from django.db import models
 class Actor(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    second_name = models.CharField(max_length=200)
+    second_name = models.CharField(max_length=200, null=True)
     birthday = models.DateField()
     movies = models.CharField(max_length=300, null=True, blank=True)
     category = models.CharField(max_length=200)
@@ -17,7 +17,7 @@ class Actor(models.Model):
 class Director(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    second_name = models.CharField(max_length=200)
+    second_name = models.CharField(max_length=200, null=True)
     birthday = models.DateField()
     movies = models.CharField(max_length=300, null=True, blank=True)
     category = models.CharField(max_length=200)
@@ -51,15 +51,15 @@ class Film(models.Model):
     date_premiere = models.DateField()
     genre = models.CharField(max_length=100, unique=True)
     time = models.IntegerField(null=True, blank=True)
-    actor = models.CharField(Actor)
-    rating_age = models.IntegerField(max_length=100)
+    actor = models.CharField(Actor, max_length=200)
+    rating_age = models.IntegerField()
     poster = models.ImageField(upload_to='posters', null=True, blank=True)
-    review = models.CharField(Review, null=True, blank=True)
+    review = models.CharField(Review, max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    actor_dubbing = models.CharField(Actor)
+    actor_dubbing = models.CharField(Actor, max_length=200)
     comment = models.TextField(max_length=200)
-    director = models.CharField(Director)
-    news = models.CharField(News)
+    director = models.CharField(Director, max_length=200)
+    news = models.CharField(News, max_length=100)
 
     def __str__(self):
         return self.name_film
